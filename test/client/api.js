@@ -142,7 +142,8 @@ module.exports = config => {
         reason: opts.reason || undefined,
         device: opts.device || undefined,
         metricsContext: opts.metricsContext || undefined,
-        originalLoginEmail: opts.originalLoginEmail || undefined
+        originalLoginEmail: opts.originalLoginEmail || undefined,
+        verificationMethod: opts.verificationMethod || undefined
       },
       {
         'accept-language': opts.lang
@@ -699,6 +700,20 @@ module.exports = config => {
       `${this.baseURL}/signinCodes/consume`,
       null,
       { code, metricsContext }
+    )
+  }
+
+  ClientApi.prototype.verifyTokenCode = function (uid, code, options) {
+    options = options || {}
+    return this.doRequest(
+      'POST',
+      this.baseURL + '/tokenCodes/verify',
+      null,
+      {
+        uid: uid,
+        code: code,
+        metricsContext: options.metricsContext
+      }
     )
   }
 

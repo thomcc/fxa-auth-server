@@ -32,5 +32,10 @@
   },
   "redis": {
     "enabled": true
+  },
+  "signinConfirmation": {
+    "skipForNewAccounts": {
+      "enabled": false
+    }
   }
 }
